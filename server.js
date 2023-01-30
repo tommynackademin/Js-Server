@@ -1,13 +1,11 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 3000
 
-const app = express();
-app.use(bodyParser.json());
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-app.get("/api/key", (req, res) => {
-  res.send(process.env.key);
-});
-
-app.listen(3000, () => {
-console.log("Server is listening on port 3000");
-});
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
