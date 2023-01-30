@@ -1,0 +1,17 @@
+on:
+  repository_dispatch:
+    types: [custom_event]
+
+jobs:
+  send-api-key:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Send API Key
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+      run: |
+        curl -X POST https://example.com/endpoint \
+          -H "Authorization: Bearer $API_KEY" \
+          -d "data=example"
